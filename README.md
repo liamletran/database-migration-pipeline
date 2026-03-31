@@ -58,6 +58,11 @@ This pipelione executes in a UAT environment that mirrors production. Source: SQ
 
 ### **Security**
 
+- Credentials stored in `.env` file — never committed to Git
+- `.gitignore` configured to exclude `.env` and credential files
+- SQLAlchemy parameterized queries used where applicable
+
+
 ### **Environment:** 
 This notebook executes in a UAT environment — source data runs on SQL Server in Docker, target database is PostgreSQL running locally via Homebrew. The UAT environment mirrors a production migration scenario where the target would be PostgreSQL on AWS RDS or Azure Database for PostgreSQL.
 
