@@ -6,12 +6,8 @@ This is a repo for compling and installing Python from scratch.
 ## **I. Project Framming and Success Criteria** 
 
 ### **Business Objectives and Context**
-Business Problem: Tại sao lại di trú? (Tiết kiệm chi phí bản quyền SQL Server, chuyển sang hệ sinh thái AWS/PostgreSQL)
-công ty muốn chuyển sang hệ sinh thái AWS (AWS ecosystem) vì hai lý do chính:
-Chi phí bản quyền (Licensing Costs): SQL Server có chi phí bản quyền rất đắt đỏ, đặc biệt là khi doanh nghiệp mở rộng quy mô
-. Trong khi đó, PostgreSQL là mã nguồn mở, giúp công ty cắt giảm đáng kể chi phí này
-.
-Sự hỗ trợ và tương thích: PostgreSQL được hỗ trợ tốt hơn và vận hành mượt mà hơn trong hệ sinh thái của AWS so với SQL Server
+
+Organizations running SQL Server face increasing licensing pressure as they scale. PostgreSQL offers a production-grade, open-source alternative with native compatibility on AWS RDS and Azure Database, with the advantage of eliminating per-core licensing costs while maintaining ACID compliance and relational integrity. 
 
 
 ### **Source Database**
@@ -25,9 +21,13 @@ Database can be downloaded [here](https://learn.microsoft.com/en-us/sql/samples/
 
 ### **Project Framming**
 **Migration Classification:** 
-- Type: Heterogeneous migration (SQL Server → PostgreSQL)
-- Approach: Big Bang — all 71 tables migrated in single operation
-- Scope: Application-specific — single OLTP database
+| Dimension | Details |
+|---|---|
+| Type | Heterogeneous — SQL Server → PostgreSQL |
+| Approach | Big Bang — 71 tables in single operation |
+| Scope | Application-specific — single OLTP database |
+| Environment | UAT — local Docker + Homebrew PostgreSQL |
+| Production target | AWS RDS PostgreSQL or Azure Database |
 
 
 ### **Success Criteria**
@@ -41,7 +41,7 @@ Once UAT is approved, the same Python scripts can be executed against production
 
 
 
-## **II.Environment Setup and Security**
+## **II.Tech Stack and Environment Setup**
 
 ### **Tech Stack**
 
