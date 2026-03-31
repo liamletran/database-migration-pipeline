@@ -26,7 +26,7 @@ Database can be downloaded [here](https://learn.microsoft.com/en-us/sql/samples/
 | Type | Heterogeneous — SQL Server → PostgreSQL |
 | Approach | Big Bang — 71 tables in single operation |
 | Scope | Application-specific — single OLTP database |
-| Environment | UAT — local Docker + Homebrew PostgreSQL |
+| Environment | UAT — SQL Server local running on Docker + PostgreSQL |
 | Production target | AWS RDS PostgreSQL or Azure Database |
 
 
