@@ -14,7 +14,7 @@ Organizations running SQL Server face increasing licensing pressure as they scal
 
 **AdventureWorks2025** is Microsoft's official **OLTP sample database**, modelling a fictional manufacturing and sales company — AdventureWorks Cycles. The database is designed for high-concurrency business operations, using a normalized relational schema typical of operational databases to support daily transactions. 
 
-It models real-world e-commerce workloads, including the management of customers, products, categories, and suppliers. This structure is ideal for testing migrations that require strict referential integrity and transactional accuracy
+It models real-world e-commerce workloads, including the management of customers, products, categories, and suppliers. This structure is ideal for testing migrations that require strict referential integrity and transactional accuracy.
 
 Database can be downloaded [here](https://learn.microsoft.com/en-us/sql/samples/adventureworks-install-configure?view=sql-server-ver17&tabs=ssms).
 
@@ -62,17 +62,18 @@ This pipelione executes in a UAT environment that mirrors production. Source: SQ
 This notebook executes in a UAT environment — source data runs on SQL Server in Docker, target database is PostgreSQL running locally via Homebrew. The UAT environment mirrors a production migration scenario where the target would be PostgreSQL on AWS RDS or Azure Database for PostgreSQL.
 
 ## **How to Run**
-[SQL Server — AdventureWorks2025 OLTP]
-         ↓  Schema Exploration (sys.tables, sys.columns, 
-         |  sys.foreign_keys, sys.primary_keys)
-
-
 
 
 ## **III. Assessment and Planning**
 
 ### **Architecture**
+```
+[SQL Server — AdventureWorks2025 OLTP]
+         ↓  Schema Exploration (sys.tables, sys.columns, 
+         |  sys.foreign_keys, sys.primary_keys)
 
+
+```
 
 
 ### **Design Decisions**
