@@ -62,7 +62,9 @@ This pipelione executes in a UAT environment that mirrors production. Source: SQ
 This notebook executes in a UAT environment — source data runs on SQL Server in Docker, target database is PostgreSQL running locally via Homebrew. The UAT environment mirrors a production migration scenario where the target would be PostgreSQL on AWS RDS or Azure Database for PostgreSQL.
 
 ## **How to Run**
-
+[SQL Server — AdventureWorks2025 OLTP]
+         ↓  Schema Exploration (sys.tables, sys.columns, 
+         |  sys.foreign_keys, sys.primary_keys)
 
 
 
