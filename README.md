@@ -30,15 +30,19 @@ Database can be downloaded [here](https://learn.microsoft.com/en-us/sql/samples/
 | Production target | AWS RDS PostgreSQL or Azure Database |
 
 
-### **Success Criteria**
-- Success Criteria: Zero Data Loss, all row counts match 100%, zero data integrity errors.
-
-- Migration Type: This is a heterogeneous migration from SQL Server to PostgreSQL and Cloud Migration
-
 **UAT Objective:** 
-Validate zero data loss and full constraint preservation before promoting the pipeline to production. 
-Once UAT is approved, the same Python scripts can be executed against production credentials with no code changes — only environment variables in .env need to be updated.
 
+This pipelione executes in a UAT environment that mirrors production. Source: SQL Server in Docker. Target: PostgreSQL via Homebrew. Once UAT is approved, the same scripts execute against production credentials. Only the environment variables in .env file need to be updated. 
+
+### **Success Criteria**
+| Criterion | Target | Result |
+|---|---|---|
+| Row count match | 71/71 tables |  |
+| FK constraints | 91/91 | |
+| Check constraints | 89/89 |  |
+| PK constraints | All tables | |
+| NOT NULL constraints | All columns |  |
+| Data loss | Zero |  |
 
 
 ## **II.Tech Stack and Environment Setup**
