@@ -40,7 +40,7 @@ Validate zero data loss and full constraint preservation before promoting the pi
 Once UAT is approved, the same Python scripts can be executed against production credentials with no code changes — only environment variables in .env need to be updated.
 
 
-_______________________________________________
+
 ## **II.Environment Setup and Security**
 
 ### **Tech Stack**
@@ -58,7 +58,11 @@ _______________________________________________
 This notebook executes in a UAT environment — source data runs on SQL Server in Docker, target database is PostgreSQL running locally via Homebrew. The UAT environment mirrors a production migration scenario where the target would be PostgreSQL on AWS RDS or Azure Database for PostgreSQL.
 
 ## **How to Run**
-________________________________________________
+
+
+
+
+
 ## **III. Assessment and Planning**
 
 ### **Architecture**
@@ -76,13 +80,16 @@ ________________________________________________
 
 
 
-___________________________________________________
+
 ## **IV. Execution (The ETL Pipeline)**
 
 
 
 
-___________________________________________________
+
+
+
+
 ## **V. Validation and Reporting**
 
 
@@ -90,6 +97,6 @@ ___________________________________________________
 
 ### **Visualization**
 
-___________________________________________________
+
 ## **VI: Migration Retrospective amd Future Roadmap**
 
