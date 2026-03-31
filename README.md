@@ -22,6 +22,8 @@ Database can be downloaded [here](https://learn.microsoft.com/en-us/sql/samples/
 
 Number of Tables: 71 tables
 
+Number of Rows: 760,167 rows
+
 Views: 20 views
 
 Stored Procedures: 10 procedures
@@ -36,10 +38,10 @@ Special Data Types: Including `hierarchyid` for tree structures, `geography` for
 Constraints: Extensive use of Foreign Keys, Primary Keys, and Check constraints to preserve business logic.
 
 
-### **Migration Strategy and Scalability:** 
+### **Migration Strategy and Scalability** 
 
 **Technical Justification:**
-Due to the relatively small size of this dataset (~5MB, 71 tables, >700k rows), adopting heavyweight enterprise tools like AWS DMS, Talend, or Informatica is not cost-effective. Furthermore, this **Heterogeneous migration** poses unique challenges—such as mapping specialized SQL Server data types (e.g., `hierarchyid`, `geography`) and complex **Composite Foreign Keys**—that require the granular control offered by custom Python and SQL scripts to ensure **Zero Data Loss**.
+Due to the relatively small size of this dataset (~5MB, 71 tables, >760k rows), adopting heavyweight enterprise tools like AWS DMS, Talend, or Informatica is not cost-effective. Furthermore, this **Heterogeneous migration** poses unique challenges—such as mapping specialized SQL Server data types (e.g., `hierarchyid`, `geography`) and complex **Composite Foreign Keys**—that require the granular control offered by custom Python and SQL scripts to ensure **Zero Data Loss**.
 
 **Approach Selection:**
 We implement a **Big Bang migration** strategy, executing the transfer in a single operation. This approach is faster for our current data volume but inherently riskier as issues can impact the entire system. To mitigate this, the pipeline is built and validated in a **UAT (sandbox) environment** before any production cutover.
