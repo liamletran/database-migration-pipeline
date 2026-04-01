@@ -18,8 +18,6 @@ It is a Microsoft's official OLTP sample database, modelling a fictional manufac
 
 It models real-world e-commerce workloads, including the management of customers, products, categories, and suppliers. This structure is ideal for testing migrations that require strict referential integrity and transactional accuracy.
 
-Database can be downloaded [here](https://learn.microsoft.com/en-us/sql/samples/adventureworks-install-configure?view=sql-server-ver17&tabs=ssms).
-
 **Specifications**
 
 | Specification     | Details       |
@@ -40,23 +38,28 @@ Special Data Types: Including `hierarchyid` for tree structures, `geography` for
 
 Constraints: Extensive use of Foreign Keys, Primary Keys, and Check constraints to preserve business logic.
 
+**Download**
+
+Database can be downloaded [here](https://learn.microsoft.com/en-us/sql/samples/adventureworks-install-configure?view=sql-server-ver17&tabs=ssms).
+
+
 
 ### **3. Migration Strategy and Scalability** 
 
-**Technical Justification:**
+**Technical Justification**
 Due to the relatively small size of this dataset (~5MB, 71 tables, >760k rows), adopting heavyweight enterprise tools like AWS DMS, Talend, or Informatica is not cost-effective. Furthermore, this heterogeneous migration poses unique challenges—such as mapping specialized SQL Server data types (e.g., `hierarchyid`, `geography`) and complex Composite Foreign Keys—that require the granular control offered by custom Python and SQL scripts to ensure Zero Data Loss.
 
-**Approach Selection:**
+**Approach Selection**
 We implement a Big Bang migration strategy, executing the transfer in a single operation. This approach is faster for our current data volume but inherently riskier as issues can impact the entire system. To mitigate this, the pipeline is built and validated in a UAT (sandbox) environment before any production cutover.
 
-**Enterprise Scalability:**
+**Enterprise Scalability**
 For enterprise data volumes exceeding the hundreds of Gigabytes (GB) range, or when real-time synchronization is required, tools like AWS DMS with CDC (Change Data Capture) capability are recommended. In such cases, Trickle migrations (phased approach) would be used to allow for parallel operation and testing, significantly reducing risk and downtime.
 
 When data reaches tens or hundreds of Terabytes (TB), network bandwidth becomes a physical barrier. At this scale, we would leverage physical data transfer services such as AWS Snowball (80TB of capacity) or Google Transfer Appliance (480TB of capacity) to bypass internet latency and packet loss. 
 
 In the current scenario, we accept a short downtime window. However, for critical systems requiring 24/7 operational continuity, a Parallel Running strategy is essential to ensure the new system performs as expected before the formal cutover.
 
-**Migration Classification Summary:**
+**Migration Classification Summary**
 
 | Dimension         | Details                                               |
 |-------------------|-------------------------------------------------------|
@@ -67,7 +70,7 @@ In the current scenario, we accept a short downtime window. However, for critica
 | Production target | AWS RDS PostgreSQL or Azure Database                  |
 
 
-**UAT Objective:** 
+**UAT Objective** 
 
 This pipelione executes in a UAT environment that mirrors production. Source: SQL Server in Docker. Target: PostgreSQL via Homebrew. Once UAT is approved, the same scripts execute against production credentials. Only the environment variables in .env file need to be updated. 
 
@@ -109,7 +112,7 @@ This pipelione executes in a UAT environment that mirrors production. Source: SQ
 - SQLAlchemy parameterized queries used where applicable
 
 
-### **3. Environment:** 
+### **3. Environment** 
 This notebook executes in a UAT environment — source data runs on SQL Server in Docker, target database is PostgreSQL running locally via Homebrew. The UAT environment mirrors a production migration scenario where the target would be PostgreSQL on AWS RDS or Azure Database for PostgreSQL.
 
 
