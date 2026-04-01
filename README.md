@@ -30,7 +30,7 @@ It models real-world e-commerce workloads, including the management of customers
 
 
 **ERD**
-
+![AdventureWorks ERD](ERD.png)
 **Technical Complexity**
 This database presents challenging migration scenarios due to its use of complex data types and structures:
 
