@@ -3,16 +3,18 @@
 
 This is a heterogeneous Big Bang migration of an application-specific OLTP database, following a UAT-first approach before production promotion to AWS RDS PostgreSQL.
 
-## **I. Project Framming and Success Criteria** 
+## **A. Project Framming and Success Criteria** 
 
-### **Business Objectives and Context**
+### **1. Business Objectives and Context**
 
 Organizations running SQL Server reporting queries performance on the legacy system are slowing down due to scaling, and a more flexible platform is needed. Additionally, they face increasing licensing pressure as they scale. PostgreSQL offers a production-grade, open-source alternative with native compatibility on AWS RDS and Azure Database, with the advantage of eliminating per-core licensing costs while maintaining ACID compliance and relational integrity.  
 
 
-### **Source Database**
+### **2. Source Database**
 
-**AdventureWorks2025** is Microsoft's official OLTP sample database, modelling a fictional manufacturing and sales company — AdventureWorks Cycles. The database is designed for high-concurrency business operations, using a normalized relational schema typical of operational databases to support daily transactions. 
+**AdventureWorks2025** 
+
+It is a Microsoft's official OLTP sample database, modelling a fictional manufacturing and sales company — AdventureWorks Cycles. The database is designed for high-concurrency business operations, using a normalized relational schema typical of operational databases to support daily transactions. 
 
 It models real-world e-commerce workloads, including the management of customers, products, categories, and suppliers. This structure is ideal for testing migrations that require strict referential integrity and transactional accuracy.
 
@@ -39,7 +41,7 @@ Special Data Types: Including `hierarchyid` for tree structures, `geography` for
 Constraints: Extensive use of Foreign Keys, Primary Keys, and Check constraints to preserve business logic.
 
 
-### **Migration Strategy and Scalability** 
+### **3. Migration Strategy and Scalability** 
 
 **Technical Justification:**
 Due to the relatively small size of this dataset (~5MB, 71 tables, >760k rows), adopting heavyweight enterprise tools like AWS DMS, Talend, or Informatica is not cost-effective. Furthermore, this heterogeneous migration poses unique challenges—such as mapping specialized SQL Server data types (e.g., `hierarchyid`, `geography`) and complex Composite Foreign Keys—that require the granular control offered by custom Python and SQL scripts to ensure Zero Data Loss.
@@ -71,7 +73,7 @@ This pipelione executes in a UAT environment that mirrors production. Source: SQ
 
 
 
-### **Success Criteria**
+### **4. Success Criteria**
 
 | Criterion             | Target        | Result |
 |-----------------------|---------------|--------|
@@ -89,9 +91,9 @@ This pipelione executes in a UAT environment that mirrors production. Source: SQ
 
 
 
-## **II.Tech Stack and Environment Setup**
+## **B.Tech Stack and Environment Setup**
 
-### **Tech Stack**
+### **1. Tech Stack**
 
 |Tool          | Purpose                  |
 |--------------|--------------------------|
@@ -100,22 +102,22 @@ This pipelione executes in a UAT environment that mirrors production. Source: SQ
 | SQL Server   | Source database          |
 | PostgreSQL   | Target database          |
 
-### **Security**
+### **2. Security**
 
 - Credentials stored in `.env` file — never committed to Git
 - `.gitignore` configured to exclude `.env` and credential files
 - SQLAlchemy parameterized queries used where applicable
 
 
-### **Environment:** 
+### **3. Environment:** 
 This notebook executes in a UAT environment — source data runs on SQL Server in Docker, target database is PostgreSQL running locally via Homebrew. The UAT environment mirrors a production migration scenario where the target would be PostgreSQL on AWS RDS or Azure Database for PostgreSQL.
 
 
 
 
-## **III. Assessment and Planning**
+## **C. Assessment and Planning**
 
-### **Architecture**
+### **1. Architecture**
 ```
 [SQL Server — AdventureWorks2025 OLTP]
          ↓  Schema Exploration (sys.tables, sys.columns, 
@@ -125,14 +127,14 @@ This notebook executes in a UAT environment — source data runs on SQL Server i
 ```
 
 
-### **Design Decisions**
+### **2. Design Decisions**
 
 | Design                                                             | Rationale                                                                           |
 |--------------------------------------------------------------------|-------------------------------------------------------------------------------------|
 
 
 
-### **Pre-Migration Findings**
+### **3. Pre-Migration Findings**
 
 | Category          | Issues Found                  | Blocking          |
 |-------------------|-------------------------------|-------------------|
@@ -152,10 +154,10 @@ This notebook executes in a UAT environment — source data runs on SQL Server i
 
 
 
-## **IV. Execution**
+## **D. Execution**
 
 
-## **V. Validation and Reporting**
+## **E. Validation and Reporting**
 
 | Step              | Result                            |
 |-------------------|-----------------------------------|
@@ -165,15 +167,15 @@ This notebook executes in a UAT environment — source data runs on SQL Server i
 
 
 
-### **Technical Validation**
+### **1. Technical Validation**
 
-### **Visualization**
-
-
+### **2. Visualization**
 
 
 
 
 
-## **VI: Migration Retrospective amd Future Roadmap**
+
+
+## **F. Migration Retrospective amd Future Roadmap**
 
